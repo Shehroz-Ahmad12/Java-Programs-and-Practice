@@ -1,0 +1,232 @@
+package quiz_game;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.border.EmptyBorder;
+
+public class Extraa extends JFrame {
+	JLabel questionLabel;
+	JRadioButton option1;
+	JRadioButton option2;
+	JRadioButton option3;
+	JRadioButton option4;
+	JLabel scoreLabel;
+	JLabel lblMin;
+	
+	String[] ques= {"2. When Rome was founded?", "3. How old is Indus Valler Civilization?","4. World War I commenced in?","5. The Great Pyramid of Giza was built for which Egyptian ruler?"};
+	String[][] answers = {{"300 BC","790 BC","753 BC","869 BC"},{"5000 BC","8000 BC","2000 BC","1600 BC"},{"1918","1857","1914","1939"},{"Cheops","Remisis","Anubis","Ozymandias"}};
+	String[] correctAns = {"753 BC","5000 BC","1914","Cheops"};
+	
+	int questionCount=-1;
+	int answerCount1=0;
+	int answerCount2=0;
+	int correctAnsCount=0;
+	int ScoreCount=0;
+	int totalScore=ques.length+1;
+	String correctAnswer="1971";
+	String option1Text;
+	String option2Text;
+	String option3Text;
+	String option4Text;
+
+	private JPanel contentPane;
+	private final ButtonGroup buttonGroup = new ButtonGroup();
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Extraa frame = new Extraa();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Extraa() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 520, 370);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		
+		
+		JLabel picture = new JLabel("");
+		picture.setBounds(218, 100, 276, 154);
+		contentPane.add(picture);
+		Image image =new ImageIcon(this.getClass().getResource("history.jpg")).getImage();
+		picture.setIcon(new ImageIcon(image));
+		
+		JLabel questionLabel = new JLabel("1. In which year Bangladesh was formed as Separate Country?");
+		questionLabel.setFont(new Font("Kristen ITC", Font.PLAIN, 12));
+		questionLabel.setBounds(35, 50, 422, 39);
+		contentPane.add(questionLabel);
+		
+		JRadioButton option1 = new JRadioButton("1947");
+		option1.setFont(new Font("Kristen ITC", Font.PLAIN, 12));
+		buttonGroup.add(option1);
+		option1.setBounds(35, 125, 165, 23);
+		contentPane.add(option1);
+		
+		JRadioButton option2 = new JRadioButton("2000");
+		option2.setFont(new Font("Kristen ITC", Font.PLAIN, 12));
+		buttonGroup.add(option2);
+		option2.setBounds(35, 151, 165, 23);
+		contentPane.add(option2);
+		
+		JRadioButton option3 = new JRadioButton("1900");
+		option3.setFont(new Font("Kristen ITC", Font.PLAIN, 12));
+		buttonGroup.add(option3);
+		option3.setBounds(35, 177, 165, 23);
+		contentPane.add(option3);
+		
+		JRadioButton option4 = new JRadioButton("1971");
+		option4.setFont(new Font("Kristen ITC", Font.PLAIN, 12));
+		buttonGroup.add(option4);
+		option4.setBounds(35, 203, 165, 23);
+		contentPane.add(option4);
+		
+		
+		
+		JLabel scoreLabel = new JLabel("Score:" + ScoreCount + "/" + totalScore);
+		scoreLabel.setFont(new Font("Kristen ITC", Font.PLAIN, 12));
+		scoreLabel.setBounds(410, 15, 84, 23);
+		contentPane.add(scoreLabel);
+		
+		JLabel lblHistory = new JLabel("History");
+		lblHistory.setFont(new Font("Kristen ITC", Font.BOLD, 16));
+		lblHistory.setBounds(200, 13, 69, 24);
+		contentPane.add(lblHistory);
+		
+		JButton submitButton = new JButton("Submit");
+		submitButton.setFont(new Font("Kristen ITC", Font.PLAIN, 12));
+		submitButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				option1Text=option1.getText();
+				option2Text=option2.getText();
+				option3Text=option3.getText();
+				option4Text=option4.getText();
+				
+						
+				if((option1.isSelected())) {			//Condition to check which option is selected
+					if (option1Text==correctAnswer) {		
+						JOptionPane.showMessageDialog(null, "Correct Answer");
+						ScoreCount++;		
+						}
+					
+					else{
+						JOptionPane.showMessageDialog(null, "Wrong Answer! The correct answer was "+correctAnswer);				
+						}	}
+					
+				else if((option2.isSelected())) {
+					if (option2Text==correctAnswer) {
+						JOptionPane.showMessageDialog(null, "Correct Answer");
+						ScoreCount++;
+						}
+					
+					else {
+						JOptionPane.showMessageDialog(null, "Wrong Answer! The correct answer was "+correctAnswer);
+						}	}
+					
+				else if((option3.isSelected())) {
+					if (option3Text==correctAnswer) {
+						JOptionPane.showMessageDialog(null, "Correct Answer");
+						ScoreCount++;
+						buttonGroup.setSelected(null, false);
+						}
+				
+					else{
+						JOptionPane.showMessageDialog(null, "Wrong Answer! The correct answer was "+correctAnswer);
+						}		}
+					
+					
+				else if((option4.isSelected())) {
+					if (option4Text==correctAnswer) {
+						JOptionPane.showMessageDialog(null, "Correct Answer");
+						ScoreCount++;
+						}
+					
+					
+					else {
+						JOptionPane.showMessageDialog(null, "Wrong Answer! The correct answer was "+correctAnswer);
+							
+					}						}
+					
+				else {
+					JOptionPane.showMessageDialog(null, "Please Select an Option");
+					return;
+				}
+				
+				
+				answerCount2=0;		//setting second index zero after ever options
+				scoreLabel.setText("Score:" + ScoreCount + "/" + totalScore);
+				questionCount++;
+				
+				if (questionCount+1==totalScore) {		//Condition to check questions
+					JOptionPane.showMessageDialog(null,"Your score is "+ ScoreCount + " out of " + totalScore);
+					Categories obj6 = new Categories();
+					obj6.setVisible(true);
+					dispose();
+					}
+				
+				questionLabel.setText(ques[questionCount]);			//Setting next question					
+					
+				option1.setText(answers[answerCount1][answerCount2]);		//Setting Options
+				answerCount2++;
+				option2.setText(answers[answerCount1][answerCount2]);
+				answerCount2++;
+				option3.setText(answers[answerCount1][answerCount2]);
+				answerCount2++;
+				option4.setText(answers[answerCount1][answerCount2]);
+				correctAnswer=correctAns[correctAnsCount];						//setting correct answer
+				correctAnsCount++;												//Increment in indexes
+				answerCount1++;	
+				
+					
+					}
+		});
+		submitButton.setBounds(175, 289, 112, 31);
+		contentPane.add(submitButton);
+		
+		JLabel lblMin = new JLabel("10");
+		lblMin.setFont(new Font("Kristen ITC", Font.PLAIN, 12));
+		lblMin.setBounds(20, 15, 20, 23);
+		contentPane.add(lblMin);
+		
+		JLabel dot = new JLabel(":");
+		dot.setBounds(35, 16, 4, 23);
+		contentPane.add(dot);
+		
+		JLabel lblSec = new JLabel("10");
+		lblSec.setFont(new Font("Kristen ITC", Font.PLAIN, 12));
+		lblSec.setBounds(46, 16, 20, 23);
+		contentPane.add(lblSec);
+		
+		
+	}
+}
+

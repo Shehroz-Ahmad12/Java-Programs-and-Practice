@@ -1,0 +1,56 @@
+package lms;
+
+public class BookIssue {
+	private Member member;
+	private Book[] booksIssued=new Book[5];
+	private Date issueDate;
+	private Date returnDate;
+	private double bill;
+	
+	public BookIssue(Member member, Book[] booksIssued, Date issueDate, Date returnDate, double bill) {
+		super();
+		this.member = member;
+		
+		for(int i=0;i<booksIssued.length;i++)
+		
+		{
+		this.booksIssued[i] = booksIssued[i];
+		}
+		
+		this.issueDate = new Date(issueDate);
+		this.returnDate =new Date (returnDate);
+	}
+	
+
+	public Date getIssueDate() {
+		return issueDate;
+	}
+
+
+	public void setIssueDate(Date issueDate) {
+		this.issueDate = issueDate;
+	}
+
+
+	public Date getReturnDate() {
+		return returnDate;
+	}
+
+
+	public void setReturnDate(Date returnDate) {
+		this.returnDate = returnDate;
+	}
+
+
+	public double calculateBill() {
+		double bill=0;
+		for(int i=0;i<booksIssued.length;i++) {
+			bill+=booksIssued[i].getCost();
+		}
+		return bill;
+	}
+	
+	
+	
+
+}

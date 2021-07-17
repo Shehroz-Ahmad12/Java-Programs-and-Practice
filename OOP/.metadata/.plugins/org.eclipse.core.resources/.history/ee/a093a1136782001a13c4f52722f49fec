@@ -1,0 +1,10 @@
+package comp;
+
+public class Runner_book_per_add {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

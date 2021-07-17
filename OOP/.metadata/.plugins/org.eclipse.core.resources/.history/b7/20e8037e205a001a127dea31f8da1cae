@@ -1,0 +1,10 @@
+package uni;
+
+public class University {
+		String UniName; 
+		String location;
+		String RectorName;
+		String[] Departments=new String[20];
+
+
+}

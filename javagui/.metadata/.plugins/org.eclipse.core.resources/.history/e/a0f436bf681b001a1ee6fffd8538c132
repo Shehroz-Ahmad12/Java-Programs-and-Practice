@@ -1,0 +1,107 @@
+package project;
+import java.util.*;
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JRadioButton;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.ButtonGroup;
+import java.io.*
+;public class Question extends JFrame {
+
+	private JPanel contentPane;
+	private final ButtonGroup buttonGroup = new ButtonGroup();
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+	
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Question frame = new Question();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Question() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		try {
+		FileWriter fw = new FileWriter("F:\\java programs\\javagui\\QuizProject\\src\\project\\User-Answers.txt");
+		}
+		catch (Exception e) {
+			System.out.println("File not found");
+			}
+		
+		try {
+			Scanner fr = new Scanner("F:\\java programs\\javagui\\QuizProject\\src\\project\\Questions.txt");
+			Scanner fr1 = new Scanner ("F:\\java programs\\javagui\\QuizProject\\src\\project\\Answers.txt");
+			}
+		catch(Exception e) {
+			System.out.println("File not found");
+		}
+		
+		JLabel Question = new JLabel("What is your name");
+		Question.setBounds(37, 32, 344, 29);
+		contentPane.add(Question);
+		
+		JRadioButton Option1 = new JRadioButton("Eminem");
+		buttonGroup.add(Option1);
+		Option1.setBounds(26, 73, 218, 23);
+		contentPane.add(Option1);
+		
+		JRadioButton Option2 = new JRadioButton("Twenty One Pilots");
+		buttonGroup.add(Option2);
+		Option2.setBounds(26, 102, 218, 23);
+		contentPane.add(Option2);
+		
+		JRadioButton Option3 = new JRadioButton("Lady Gaga");
+		buttonGroup.add(Option3);
+		Option3.setBounds(26, 128, 218, 23);
+		contentPane.add(Option3);
+		
+		JRadioButton Option4 = new JRadioButton("Kpop");
+		buttonGroup.add(Option4);
+		Option4.setBounds(26, 154, 218, 23);
+		contentPane.add(Option4);
+		
+		JButton SubmitBt = new JButton("Submit");
+		SubmitBt.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		SubmitBt.setBounds(155, 227, 89, 23);
+		contentPane.add(SubmitBt);
+		
+		JButton NextBt = new JButton("Next");
+		NextBt.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
+		NextBt.setBounds(335, 227, 89, 23);
+		contentPane.add(NextBt);
+
+		}
+		
+		}

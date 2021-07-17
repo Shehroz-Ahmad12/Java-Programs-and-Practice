@@ -1,0 +1,11 @@
+package lms;
+
+public class BookIssue {
+	private Member member;
+	private Book[] booksIssued=new Book[5];
+	private Date issueDate;
+	private Date returnDate;
+	private double bill;
+	
+
+}

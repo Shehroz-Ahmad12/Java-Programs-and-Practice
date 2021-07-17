@@ -1,0 +1,148 @@
+package lms;
+
+import java.io.EOFException;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+
+public class BookIssue {
+	private Member member;
+	private Book bookIssued;
+	private Date issueDate;
+	private Date returnDate;
+	private double bill;
+	
+	public BookIssue() {
+		
+	}
+	public BookIssue(Member member, Book bookIssued, Date issueDate, Date returnDate, double bill) {
+		super();
+		this.member = member;
+		this.bookIssued =new Book (bookIssued);
+		this.issueDate = new Date(issueDate);
+		this.returnDate =new Date (returnDate);
+	}
+	
+
+	public Date getIssueDate() {
+		return issueDate;
+	}
+
+
+	public void setIssueDate(Date issueDate) {
+		this.issueDate = issueDate;
+	}
+
+
+	public Date getReturnDate() {
+		return returnDate;
+	}
+
+
+	public void setReturnDate(Date returnDate) {
+		this.returnDate = returnDate;
+	}
+
+
+	public double calculateBill() {
+		double bill=0;
+		if(this.bookIssued!=null) {
+			bill=this.bookIssued.getCost();
+		}
+		return bill;
+	}
+
+
+	
+	
+	public void IssueBook() { 
+		ArrayList<BookIssue> BooksIssuedList = readBookIssueData();
+		if(this.bookIssued.getQuantity()>0) {
+			this.bookIssued.setQuantity(this.bookIssued.getQuantity()-1);
+			BooksIssuedList.add(this);
+		}else {
+			System.out.println("Book unavailable");
+		}
+		
+		writeBookIssueData(BooksIssuedList);
+	}
+	
+	public void returnBook() {
+		ArrayList<BookIssue> BooksIssuedList = readBookIssueData();
+		for(int i=0;i<BooksIssuedList.size();i++) {
+			
+		}
+		
+	}
+
+
+public ArrayList<BookIssue> readBookIssueData(){
+	ArrayList<BookIssue> BooksIssuedList = new ArrayList<BookIssue>(0);
+	ObjectInputStream inputStream = null;
+	try
+	{
+	inputStream = new ObjectInputStream(new FileInputStream("BooksIssued.ser"));
+		boolean EOF = false;
+		while(!EOF) {
+			try {
+				BookIssue myObj = (BookIssue) inputStream.readObject();
+				BooksIssuedList.add(myObj);
+				//System.out.println("Read: " + myObj.getName());
+			} catch (ClassNotFoundException e) {
+				//System.out.println("Class not found");
+			} catch (EOFException end) {
+				EOF = true;
+			}
+                    }
+            }
+	 catch(FileNotFoundException e) {
+		//System.out.println("Cannot find file");
+	} catch (IOException e) {
+		//System.out.println("IO Exception while opening stream");
+		//e.printStackTrace();
+	} finally { 
+		try {
+			if(inputStream != null)
+				inputStream.close( );
+		} catch (IOException e) {
+			System.out.println("IO Exception while closing file");
+		}
+	}
+            
+	return BooksIssuedList;
+}
+
+
+
+
+
+public void writeBookIssueData(ArrayList<BookIssue> BooksIssuedList) {
+ObjectOutputStream outputStream = null; 
+
+try {
+	
+	outputStream = new ObjectOutputStream(new FileOutputStream("BooksIssued.ser"));
+	
+	for(int i = 0 ; i < BooksIssuedList.size() ; i++) {
+		outputStream.writeObject(BooksIssuedList.get(i));
+	}
+} catch(IOException e) {
+	System.out.println("IO Exception while opening file");
+} finally { 
+	try {
+		if(outputStream != null) {
+			outputStream.close();								
+		}
+
+	} catch (IOException e) {
+		System.out.println("IO Exception while closing file");
+	}
+}}
+	
+	
+
+}

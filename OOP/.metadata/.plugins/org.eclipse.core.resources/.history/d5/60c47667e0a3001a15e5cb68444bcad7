@@ -1,0 +1,22 @@
+package lms;
+
+public class RunnerLMS {
+
+	public static void main(String[] args) {
+		int option=0;
+		do {
+			
+			
+			
+			System.out.println("**************MAIN MENU***********");
+			switch(option) {
+			case 1:
+			}
+			
+			
+		}while(option!=0);
+		
+		
+	}
+
+}
